@@ -18,7 +18,7 @@
             <h1>Blueprints</h1>
             <form class="inline-form">
                 <label>Author <input type="text" id="author" name="author" /></label>
-                <input type="submit" value="Get blueprints" />
+                <input type="submit" value="Get blueprints" onclick="Module.setList('#author')"/>
             </form>
         </div>
 
@@ -31,7 +31,7 @@
                     <th>Open blueprint</th>
                 </tr>
             </table>
-            <h2>Total user points: </h2>
+            <h2>Total user points: </h2><label id="totalPoints"></label>
         </div>
     </div>
 </body>
