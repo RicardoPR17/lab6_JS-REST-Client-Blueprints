@@ -12,23 +12,27 @@ var Module = (function () {
         $("#author2").text(author + "'s blueprints: ");
     }
 
-    function fun() {
+    var fun = function(list){
+        console.info(list);
+        //console.log("HOLAAA");
         const blueprints = list.map(function(bp){
             return {name: bp.name, points: bp.points.length};
         });
 
         $("#blueprints").find("td").remove();
 
-        blueprints.map(function(bps) {
-            var row = "<tr><td>" + bps.name + "</td><td>" + bps.points + "</td></tr>";
+        blueprints.map(function(bp) {
+            var row = "<tr><td>" + bp.name + "</td><td>" + bp.points + "</td></tr>";
             $("#blueprints").append(row);
         });
 
-        var totalPoints = list.reduce(function(total, bpss) {
-            return total + bpss.points;
+
+
+        var totalPoints = list.reduce(function(total, bp) {
+            return total + bp.points.length;
         }, 0);
 
-        $("#totalPoints").text(totalPoints);
+        $("#totalPoints").html(totalPoints);
 
 
     }
