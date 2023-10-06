@@ -4,11 +4,7 @@ var Module = (function () {
     var list = [];
     // Private method to access private variable
     function changeName() {
-        //author = $("#author").val();
-        //$("#author2").text(author);
         author = document.getElementById("author").value;
-        //author = author_new;
-        //$("#author2").val()=author;
         $("#author2").text(author + "'s blueprints: ");
     }
 
@@ -32,7 +28,7 @@ var Module = (function () {
             return total + bp.points.length;
         }, 0);
 
-        $("#totalPoints").html(totalPoints);
+        $("#totalPoints").text(totalPoints);
 
 
     }
