@@ -18,12 +18,13 @@
             <h1>Blueprints</h1>
             <form class="inline-form">
                 <label>Author <input type="text" id="author" name="author" /></label>
-                <input type="submit" value="Get blueprints" onclick="Module.setList('#author')"/>
+                <button type="button" onclick="Module.setList(document.getElementById('author').value)">Get blueprints</button>
+                <!--<input type="submit" value="Get blueprints" onclick="Module.changeName()"/>-->
             </form>
         </div>
 
         <div>
-            <h2>#{author}'s blueprints:</h2>
+            <h2 id="author2"></h2>
             <table id="blueprints">
                 <tr>
                     <th>Blueprint name</th>

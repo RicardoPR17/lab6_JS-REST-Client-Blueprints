@@ -1,28 +1,31 @@
-import * as apimock from "apimock.js"
-
 var Module = (function () {
     // Private variables
     var author;
     var list = [];
     // Private method to access private variable
-    function changeName () {
-        author = $("#author").val();
+    function changeName() {
+        //author = $("#author").val();
+        //$("#author2").text(author);
+        author = document.getElementById("author").value;
+        //author = author_new;
+        //$("#author2").val()=author;
+        $("#author2").text(author + "'s blueprints: ");
     }
 
     function fun() {
-        var blueprints = list.map(function(bp){
-            return {name: plano.name, points: plano.points.length};
+        const blueprints = list.map(function(bp){
+            return {name: bp.name, points: bp.points.length};
         });
 
         $("#blueprints").find("td").remove();
 
-        blueprints.map(function(bp) {
-            var row = "<tr><td>" + bp.name + "</td><td>" + bp.points + "</td></tr>";
-            $("#blueprints").append(fila);
+        blueprints.map(function(bps) {
+            var row = "<tr><td>" + bps.name + "</td><td>" + bps.points + "</td></tr>";
+            $("#blueprints").append(row);
         });
 
-        var totalPoints = list.reduce(function(total, bp) {
-            return total + bp.points.length;
+        var totalPoints = list.reduce(function(total, bpss) {
+            return total + bpss.points;
         }, 0);
 
         $("#totalPoints").text(totalPoints);
@@ -30,9 +33,9 @@ var Module = (function () {
 
     }
 
-    function setList (author_new){
-        //changeName();
-        apimock.getBlueprintsByAuthor(author_new,fun);
+    function setList(author){
+        changeName();
+        apimock.getBlueprintsByAuthor(author,fun);
     }
     // Public method that allows updating a private variable
     return {
