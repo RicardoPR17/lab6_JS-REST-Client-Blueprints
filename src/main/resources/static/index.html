@@ -16,7 +16,7 @@
 
 <style>
     body {
-        display:flex;
+        display: flex;
         background-color: #e6faff;
         font-family: 'Times New Roman', Times, serif;
     }
@@ -44,16 +44,15 @@
             <h1>Blueprints</h1>
             <form class="inline-form">
                 <label>Author <input type="text" id="author" name="author" /></label>
-                <button type="button" class="btn btn-primary" onclick="Module.setList(document.getElementById('author').value)">Get
-                    blueprints
-                </button>
+                <button type="button" class="btn btn-primary"
+                    onclick="Module.setList(document.getElementById('author').value)">Get blueprints</button>
             </form>
         </div>
 
         <div class="row gx-5 justify-content-around">
             <div class="col-sm-4">
                 <h2 id="author2"></h2>
-                <table id="blueprints"  class="table-info table table-bordered border-primary">
+                <table id="blueprints" class="table-info table table-bordered border-primary">
                     <tr>
                         <th>Blueprint name</th>
                         <th>Number of points</th>
