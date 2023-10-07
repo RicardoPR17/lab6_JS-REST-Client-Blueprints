@@ -1,7 +1,10 @@
 var Module = (function () {
     // Private variables
     var author;
-    var list = [];
+
+    const apiOpt = true;
+
+    let api = apiOpt ? apiclient : apimock;
 
     // Private method to access private variable
     function changeName() {
@@ -10,16 +13,20 @@ var Module = (function () {
     }
 
     var fun = function (list) {
+        if (!(Array.isArray(list))) {
+            list = JSON.parse(list);
+        }
+
         console.info(list);
 
         const blueprints = list.map(function (bp) {
-            return { name: bp.name, author: bp.author, points: bp.points.length };
+            return { author: bp.author, points: bp.points.length, name: bp.name };
         });
 
         $("#blueprints").find("td").remove();
 
         blueprints.map(function (bp) {
-            var row = '<tr><td>' + bp.name + '</td><td>' + bp.points + '</td><td><button onclick="Module.getBlueprint(\'' +
+            var row = '<tr><td>' + bp.name + '</td><td>' + bp.points + '</td><td><button class="btn btn-primary" onclick="Module.getBlueprint(\'' +
                 bp.author + '\', \'' + bp.name + '\')">Open</button></td></tr>';
             $("#blueprints").append(row);
         });
@@ -35,10 +42,14 @@ var Module = (function () {
 
     function setList(author) {
         changeName();
-        apimock.getBlueprintsByAuthor(author, fun);
+        api.getBlueprintsByAuthor(author, fun);
     }
 
     var drawBlueprint = function (blueprintToDraw) {
+        if (!(Array.isArray(blueprintToDraw))) {
+            blueprintToDraw = JSON.parse(blueprintToDraw);
+        }
+
         console.info(blueprintToDraw);
 
         var blueprint = blueprintToDraw;
@@ -62,7 +73,7 @@ var Module = (function () {
 
     function getBlueprint(author, bpname) {
         $("#blueprint_name").text(bpname);
-        apimock.getBlueprintsByNameAndAuthor(author, bpname, drawBlueprint);
+        api.getBlueprintsByNameAndAuthor(author, bpname, drawBlueprint);
     }
 
     // Public method that allows updating a private variable
